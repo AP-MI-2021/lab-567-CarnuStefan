@@ -1,4 +1,4 @@
-def creaza_rezervare(id_rezervare:int,nume,clasa,pret,checkin_facut):
+def creaza_rezervare(id_rezervare:int,nume,clasa,pret,checkin):
     """
     Creaza o rezervare
     :param id_rezervare: Identificator numeric pentru rezervare,Unic<trebuie sa fie int
@@ -13,7 +13,7 @@ def creaza_rezervare(id_rezervare:int,nume,clasa,pret,checkin_facut):
         'nume': nume,
         'clasa': clasa,
         'pret': pret,
-        'checkin_facut': checkin_facut,
+        'checkin': checkin,
     }
 
 
@@ -60,3 +60,9 @@ def get_checkin(rezervare):
     :return: checkin-ul unei rezrevari
     """
     return rezervare['checkin']
+
+
+def get_detalii(rezervare):
+    return f"Rezervarea cu id-ul {get_id(rezervare)}, facuta pe numele {get_nume(rezervare)}, " \
+           f"la clasa {get_clasa(rezervare)}, cu pretul de {get_pret(rezervare)}," \
+           f" care are starusul de checkin : {get_checkin(rezervare)}"
