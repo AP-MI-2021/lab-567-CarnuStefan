@@ -1,14 +1,14 @@
-def creaza_rezervare(id_rezervare:int,nume,clasa,pret,checkin):
+def creaza_rezervare(id_rezervare: int, nume, clasa, pret, checkin):
     """
     Creaza o rezervare
     :param id_rezervare: Identificator numeric pentru rezervare,Unic<trebuie sa fie int
     :param nume: Numele celui care a facut rezervarea
     :param clasa: Tipul de rezervare
     :param pret: Pretul rezervarii
-    :param checkin_facut: Daca sa facut check-in sau nu
+    :param checkin: Daca s-a facut check-in sau nu
     :return: o rezervare
     """
-    return[
+    return [
         id_rezervare,
         nume,
         clasa,
