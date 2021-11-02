@@ -69,6 +69,9 @@ def sterge_rezervare(lst_rezervari, id_rezervare: int):
     :param id_rezervare: id-ul rezervarii care trebuie sterse
     :return: o noua lista fara rezervarea cu id-ul dat
     """
+    if citeste_rezervare(lst_rezervari, id_rezervare) is None:
+        raise ValueError(f'Nu exista o rezervare cu id-ul {id_rezervare} care sa fie stearsa')
+
     new_lst_rezervari = []
     for rezervare in lst_rezervari:
         if get_id(rezervare) != id_rezervare:
