@@ -1,5 +1,5 @@
 from Domain.rezevare import creaza_rezervare
-from Logic.crud import adaug_rezervare, modifica_rezervare, sterge_rezervare, citeste_rezervare
+from Logic.crud import adaug_rezervare, modifica_rezervare, sterge_rezervare
 from Logic.ieftinire import ieftinire
 from Logic.upgrade_clasa import upgrade_clasa
 from UserInterface.interfata import handle_afisare, handle_detalii
@@ -30,26 +30,26 @@ def cmd_line(lst_rezervari):
             subcomenzi = comanda.split(",")
             try:
                 if subcomenzi[0] == "add":
-                    lst_rezervari=adaug_rezervare(lst_rezervari, int(subcomenzi[1]), subcomenzi[2], subcomenzi[3], subcomenzi[4],
-                                    subcomenzi[5])
+                    lst_rezervari = adaug_rezervare(lst_rezervari, int(subcomenzi[1]), subcomenzi[2], subcomenzi[3],
+                                                    subcomenzi[4],
+                                                    subcomenzi[5])
                 elif subcomenzi[0] == "modify":
-                    new_rezervare = creaza_rezervare(subcomenzi[1], subcomenzi[2], subcomenzi[3], subcomenzi[4],
+                    new_rezervare = creaza_rezervare(int(subcomenzi[1]), subcomenzi[2], subcomenzi[3], subcomenzi[4],
                                                      subcomenzi[5])
-                    lst_rezervari=modifica_rezervare(lst_rezervari, new_rezervare)
+                    lst_rezervari = modifica_rezervare(lst_rezervari, new_rezervare)
                 elif subcomenzi[0] == "delete":
-                    lst_rezervari=sterge_rezervare(lst_rezervari, subcomenzi[1])
+                    lst_rezervari = sterge_rezervare(lst_rezervari, int(subcomenzi[1]))
                 elif subcomenzi[0] == "showall":
                     handle_afisare(lst_rezervari)
                 elif subcomenzi[0] == "details":
                     handle_detalii(lst_rezervari)
                 elif subcomenzi[0] == "upgrade":
-                    lst_rezervari=upgrade_clasa(lst_rezervari, subcomenzi[1])
+                    lst_rezervari = upgrade_clasa(lst_rezervari, subcomenzi[1])
                 elif subcomenzi[0] == "sale":
-                    lst_rezervari=ieftinire(lst_rezervari, subcomenzi[1])
+                    lst_rezervari = ieftinire(lst_rezervari, float(subcomenzi[1]))
                 elif subcomenzi[0] == "exit":
                     return lst_rezervari
                 elif subcomenzi[0] == "help":
                     help_cmd()
             except ValueError as err:
                 print("Eroare: ", err)
-    return lst_rezervari
