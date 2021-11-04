@@ -2,7 +2,7 @@ from Domain.rezevare import creaza_rezervare, get_id, get_clasa, get_checkin
 
 
 def adaug_rezervare(lst_rezervari,
-                    id_rezervare: int, nume, clasa, pret, checkin_facut):
+                    id_rezervare: int, nume, clasa, pret: float, checkin_facut):
     """
     Adauga o rezervare la lista cu rezervari
     :param lst_rezervari: Lista cu rezervari

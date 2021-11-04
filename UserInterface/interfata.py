@@ -1,6 +1,7 @@
 from Domain.rezevare import creaza_rezervare, get_detalii, get_nume, get_clasa, get_pret, get_checkin
 from Logic.crud import adaug_rezervare, modifica_rezervare, sterge_rezervare, citeste_rezervare
 from Logic.ieftinire import ieftinire
+from Logic.pret_maxim_per_clasa import maxprice_class
 from Logic.upgrade_clasa import upgrade_clasa
 
 
@@ -8,6 +9,7 @@ def showmenu():
     print("1.Meniu CRUD")
     print("2.Upgrade clasa")
     print("3.Ieftinire")
+    print("4.Determinare pret maxim pe clasa")
     print("x.Inchidere")
 
 
@@ -56,7 +58,7 @@ def handle_stergere(lst_rezervari):
         id_rezervare = int(input("Dati un id-ul rezervarii care trebuie sterse: "))
         return sterge_rezervare(lst_rezervari, id_rezervare)
     except ValueError as err:
-        print("Eroare: ",err)
+        print("Eroare: ", err)
     return lst_rezervari
 
 
@@ -112,10 +114,17 @@ def handle_upgrade(lst_rezervari):
 def handle_ieftinire(lst_rezervari):
     try:
         procentaj = float(input("Introduceti procentajul cu care doriti sa ieftiniti: "))
-        return ieftinire(lst_rezervari,procentaj)
+        return ieftinire(lst_rezervari, procentaj)
     except ValueError as err:
-        print("Eroare: " , err)
+        print("Eroare: ", err)
     return lst_rezervari
+
+
+def handle_maxpret(lst_rezervari):
+    max_pret = maxprice_class(lst_rezervari)
+    for clasa in max_pret:
+        print(clasa, ':', max_pret[clasa])
+
 
 def run_ui(lst_rezervari):
     while True:
@@ -127,6 +136,8 @@ def run_ui(lst_rezervari):
             lst_rezervari = handle_upgrade(lst_rezervari)
         elif option == '3':
             lst_rezervari = handle_ieftinire(lst_rezervari)
+        elif option == '4':
+            handle_maxpret(lst_rezervari)
         elif option == 'x':
             break
         else:
