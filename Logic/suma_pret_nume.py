@@ -3,9 +3,9 @@ from Domain.rezevare import get_nume, get_pret
 
 def sum_price_name(lst_rezervari):
     """
-    
-    :param lst_rezervari:
-    :return:
+    Calculeaza totalul preturilor pentru fiecare nume care are rezervari asociate
+    :param lst_rezervari: lista cu rezervari
+    :return: Un dictionar care are numele drept chei si suma preturilor drept valoare
     """
     sume_nume = {}
     for rez1 in lst_rezervari:

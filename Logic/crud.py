@@ -1,4 +1,4 @@
-from Domain.rezevare import creaza_rezervare, get_id, get_clasa, get_checkin
+from Domain.rezevare import creaza_rezervare, get_id, get_clasa, get_checkin, get_pret
 
 
 def adaug_rezervare(lst_rezervari,
@@ -20,6 +20,7 @@ def adaug_rezervare(lst_rezervari,
         raise ValueError(f'Clasa poate fi doar:"economy","economy plus" sau "business"')
     if (checkin_facut != "da") & (checkin_facut != "nu"):
         raise ValueError(f'Statusul de checkin poate fi doar :"da" sau "nu"')
+    pret = float(pret)
     rezervare = creaza_rezervare(id_rezervare, nume, clasa, pret, checkin_facut)
     return lst_rezervari + [rezervare]
 
@@ -56,11 +57,13 @@ def modifica_rezervare(lst_rezervari, new_rezervare):
     """
     if citeste_rezervare(lst_rezervari, get_id(new_rezervare)) is None:
         raise ValueError(f'Nu exista o rezervare cu id-ul {get_id(new_rezervare)} care sa fie modificata')
-    if (get_clasa(new_rezervare) != "economy") & (get_clasa(new_rezervare) != "economy plus") & (get_clasa(new_rezervare) != "business"):
+    if (get_clasa(new_rezervare) != "economy") & (get_clasa(new_rezervare) != "economy plus") & (
+            get_clasa(new_rezervare) != "business"):
         raise ValueError(f'Clasa poate fi doar:"economy","economy plus" sau "business"')
     if (get_checkin(new_rezervare) != "da") & (get_checkin(new_rezervare) != "nu"):
         raise ValueError(f'Statusul de checkin poate fi doar :"da" sau "nu"')
     new_lst_rezervari = []
+    _ = float(get_pret(new_rezervare))
     for rezervare in lst_rezervari:
         if get_id(rezervare) != get_id(new_rezervare):
             new_lst_rezervari.append(rezervare)

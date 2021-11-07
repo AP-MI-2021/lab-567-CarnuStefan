@@ -35,14 +35,14 @@ def test_ieftinire():
     assert rezervare_ieftinita4 in lst_ieftinita3
     # Test eroare procentaj > 100 si procentaj is None
     try:
-        _=ieftinire(lst_rezervari,)
+        _ = ieftinire(lst_rezervari, )
         assert False
     except ValueError:
         assert True
 
     try:
-        _=ieftinire(lst_rezervari,1000)
-        _=ieftinire(lst_rezervari,100.1)
+        _ = ieftinire(lst_rezervari, 1000)
+        _ = ieftinire(lst_rezervari, 100.1)
         assert False
     except ValueError:
         assert True

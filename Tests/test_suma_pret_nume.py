@@ -24,4 +24,9 @@ def get_date():
 
 def test_sum_price_name():
     test_lst = get_date()
-    print (sum_price_name(test_lst))
+    result = sum_price_name(test_lst)
+    assert result['ex1'] == 123.4+123.4
+    assert result['ex2'] == 225+225+225
+    assert result['ex3'] == 0
+    assert result['ex4'] == 324.9+32453656.9+32412413.9
+    assert result['ex5'] == 123.4-123.4

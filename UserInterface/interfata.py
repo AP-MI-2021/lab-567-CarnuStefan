@@ -1,7 +1,9 @@
 from Domain.rezevare import creaza_rezervare, get_detalii, get_nume, get_clasa, get_pret, get_checkin
 from Logic.crud import adaug_rezervare, modifica_rezervare, sterge_rezervare, citeste_rezervare
 from Logic.ieftinire import ieftinire
+from Logic.ord_pret import ord_price
 from Logic.pret_maxim_per_clasa import maxprice_class
+from Logic.suma_pret_nume import sum_price_name
 from Logic.upgrade_clasa import upgrade_clasa
 
 
@@ -10,6 +12,8 @@ def showmenu():
     print("2.Upgrade clasa")
     print("3.Ieftinire")
     print("4.Determinare pret maxim pe clasa")
+    print("5.Afisarea pretului total pentru fiecare nume cu rezervari")
+    print("6.Ordonare crescatoare dupa pret")
     print("x.Inchidere")
 
 
@@ -138,6 +142,10 @@ def run_ui(lst_rezervari):
             lst_rezervari = handle_ieftinire(lst_rezervari)
         elif option == '4':
             handle_maxpret(lst_rezervari)
+        elif option == '5':
+            print(sum_price_name(lst_rezervari))
+        elif option == '6':
+            lst_rezervari = ord_price(lst_rezervari)
         elif option == 'x':
             break
         else:
