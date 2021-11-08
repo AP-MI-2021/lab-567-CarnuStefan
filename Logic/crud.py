@@ -2,9 +2,12 @@ from Domain.rezevare import creaza_rezervare, get_id, get_clasa, get_checkin, ge
 
 
 def adaug_rezervare(lst_rezervari,
-                    id_rezervare: int, nume, clasa, pret: float, checkin_facut):
+                    id_rezervare: int, nume, clasa, pret: float, checkin_facut, lst_undo: list = None,
+                    lst_redo: list = None):
     """
     Adauga o rezervare la lista cu rezervari
+    :param lst_redo: Resetam lista de redo
+    :param lst_undo: Salveaza lista inainte de adaugare pentru a putea face undo
     :param lst_rezervari: Lista cu rezervari
     :param id_rezervare: id-ul rezervarii care trebuie adaugata
     :param nume: Numele persoanei care a facut rezervarea
@@ -21,6 +24,9 @@ def adaug_rezervare(lst_rezervari,
     if (checkin_facut != "da") & (checkin_facut != "nu"):
         raise ValueError(f'Statusul de checkin poate fi doar :"da" sau "nu"')
     pret = float(pret)
+    if (lst_undo is not None) & (lst_redo is not None):
+        lst_undo.append(lst_rezervari)
+        lst_redo.clear()
     rezervare = creaza_rezervare(id_rezervare, nume, clasa, pret, checkin_facut)
     return lst_rezervari + [rezervare]
 
@@ -47,10 +53,12 @@ def citeste_rezervare(lst_rezervari, id_rezervare: int = None):
     return None
 
 
-def modifica_rezervare(lst_rezervari, new_rezervare):
+def modifica_rezervare(lst_rezervari, new_rezervare, lst_undo: list = None, lst_redo: list = None):
     """
     Cauta in lista cu rezervari, dupa id, rezervarea care trebuie modificata
     si o inlocuieste cu noua rezervare cu datele modificate
+    :param lst_redo: Resetam lista de redo
+    :param lst_undo: Salveaza lista inainte de modificare pentru a putea face undo
     :param lst_rezervari: lista cu rezervari
     :param new_rezervare: o rezervare a carei id este deja in lista
     :return: o noua lista cu noua rezervare sau vhechea lista
@@ -64,6 +72,11 @@ def modifica_rezervare(lst_rezervari, new_rezervare):
         raise ValueError(f'Statusul de checkin poate fi doar :"da" sau "nu"')
     new_lst_rezervari = []
     _ = float(get_pret(new_rezervare))
+
+    if (lst_undo is not None) & (lst_redo is not None):
+        lst_undo.append(lst_rezervari)
+        lst_redo.clear()
+
     for rezervare in lst_rezervari:
         if get_id(rezervare) != get_id(new_rezervare):
             new_lst_rezervari.append(rezervare)
@@ -72,15 +85,21 @@ def modifica_rezervare(lst_rezervari, new_rezervare):
     return new_lst_rezervari
 
 
-def sterge_rezervare(lst_rezervari, id_rezervare: int):
+def sterge_rezervare(lst_rezervari, id_rezervare: int, lst_undo: list = None, lst_redo: list = None):
     """
     Returneaza o noua lista fara rezervarea cu id-ul dat ca parametru
+    :param lst_redo: Resetam lista de redo
+    :param lst_undo: Salveaza lista inainte de stergere pentru a putea face undo
     :param lst_rezervari: lista cu rezervari
     :param id_rezervare: id-ul rezervarii care trebuie sterse
     :return: o noua lista fara rezervarea cu id-ul dat
     """
     if citeste_rezervare(lst_rezervari, id_rezervare) is None:
         raise ValueError(f'Nu exista o rezervare cu id-ul {id_rezervare} care sa fie stearsa')
+
+    if (lst_undo is not None) & (lst_redo is not None):
+        lst_undo.append(lst_rezervari)
+        lst_redo.clear()
 
     new_lst_rezervari = []
     for rezervare in lst_rezervari:

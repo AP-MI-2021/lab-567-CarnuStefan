@@ -1,9 +1,11 @@
 from Domain.rezevare import get_nume, get_clasa, creaza_rezervare, get_id, get_pret, get_checkin
 
 
-def upgrade_clasa(lst_rezervari, nume):
+def upgrade_clasa(lst_rezervari, nume,lst_undo: list = None, lst_redo: list = None):
     """
     Upgradeaza clasa rezervarii (economy -> economy plus -> business) pentru toate rezervarile facute pe un anumit nume
+    :param lst_redo: Resetam lista de redo
+    :param lst_undo: Salveaza lista inainte de upgrade pentru a putea face undo
     :param lst_rezervari: lista cu rezervari
     :param nume: Numele pentru care trebuie facute upgrade-uri
     :return:
@@ -12,6 +14,9 @@ def upgrade_clasa(lst_rezervari, nume):
                                                  -daca toate rezervarile de pe numele dat sunt clasa "business"
     """
     new_lst_rezervari = []
+    if (lst_undo is not None) & (lst_redo is not None):
+        lst_undo.append(lst_rezervari)
+        lst_redo.clear()
 
     for rezervare in lst_rezervari:
         if get_nume(rezervare) != nume:

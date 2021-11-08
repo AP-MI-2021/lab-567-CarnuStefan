@@ -4,7 +4,7 @@ from Logic.ieftinire import ieftinire
 from Logic.ord_pret import ord_price
 from Logic.suma_pret_nume import sum_price_name
 from Logic.upgrade_clasa import upgrade_clasa
-from UserInterface.interfata import handle_afisare, handle_detalii, handle_maxpret
+from UserInterface.interfata import handle_afisare, handle_detalii, handle_maxpret, handle_undo, handle_redo
 
 
 def help_cmd():
@@ -22,11 +22,13 @@ def help_cmd():
     print('Afisarea sumei preturilor pentru toate rezervarile facute pe un nume:\n -se face folosind "total"')
     print('Ordonarea listei dupa preturile rezervarilor:\n -se face folosind "orderprice"')
     print('ATENTIE:\n -La finalul unei comenzi,imediat dupa ultiml parametru, se pune ";"')
-    print(' -Folotsiti comanda "exit" pentru a iesi ')
+    print(' -Folotsiti comanda "x" pentru a iesi ')
     print(' -Folositi comanda "help" pentru a reafisa acest mesaj')
+    print(' -Folositi comanda "u" pentru a face Undo')
+    print(' -Folositi comanda "r" pentru a face Redo')
 
 
-def cmd_line(lst_rezervari):
+def cmd_line(lst_rezervari, lst_undo, lst_redo):
     help_cmd()
     while True:
         line = input("Introduceti comenzi:")
@@ -38,7 +40,7 @@ def cmd_line(lst_rezervari):
                     if len(subcomenzi) == 6:
                         lst_rezervari = adaug_rezervare(lst_rezervari, int(subcomenzi[1]), subcomenzi[2], subcomenzi[3],
                                                         float(subcomenzi[4]),
-                                                        subcomenzi[5])
+                                                        subcomenzi[5], lst_undo, lst_redo)
                     else:
                         print('Comanda "add" necesita 5 parametri')
                 elif subcomenzi[0] == "modify":
@@ -46,12 +48,12 @@ def cmd_line(lst_rezervari):
                         new_rezervare = creaza_rezervare(int(subcomenzi[1]), subcomenzi[2], subcomenzi[3],
                                                          float(subcomenzi[4]),
                                                          subcomenzi[5])
-                        lst_rezervari = modifica_rezervare(lst_rezervari, new_rezervare)
+                        lst_rezervari = modifica_rezervare(lst_rezervari, new_rezervare, lst_undo, lst_redo)
                     else:
                         print('Comanda "modify" necesita 5 parametri')
                 elif subcomenzi[0] == "delete":
                     if len(subcomenzi) == 2:
-                        lst_rezervari = sterge_rezervare(lst_rezervari, int(subcomenzi[1]))
+                        lst_rezervari = sterge_rezervare(lst_rezervari, int(subcomenzi[1]), lst_undo, lst_redo)
                     else:
                         print('Comanda "delete" necesita un parametru')
                 elif subcomenzi[0] == "showall":
@@ -60,12 +62,12 @@ def cmd_line(lst_rezervari):
                     handle_detalii(lst_rezervari)
                 elif subcomenzi[0] == "upgrade":
                     if len(subcomenzi) == 2:
-                        lst_rezervari = upgrade_clasa(lst_rezervari, subcomenzi[1])
+                        lst_rezervari = upgrade_clasa(lst_rezervari, subcomenzi[1], lst_undo, lst_redo)
                     else:
                         print('Comanda "upgrade" necesita un parametru')
                 elif subcomenzi[0] == "sale":
                     if len(subcomenzi) == 2:
-                        lst_rezervari = ieftinire(lst_rezervari, float(subcomenzi[1]))
+                        lst_rezervari = ieftinire(lst_rezervari, float(subcomenzi[1]), lst_undo, lst_redo)
                     else:
                         print('Comanda "sale" necesita un parametru')
                 elif subcomenzi[0] == "maxprice":
@@ -73,8 +75,12 @@ def cmd_line(lst_rezervari):
                 elif subcomenzi[0] == "total":
                     print(sum_price_name(lst_rezervari))
                 elif subcomenzi[0] == "orderprice":
-                    lst_rezervari = ord_price(lst_rezervari)
-                elif subcomenzi[0] == "exit":
+                    lst_rezervari = ord_price(lst_rezervari, lst_undo, lst_redo)
+                elif subcomenzi[0] == "u":
+                    lst_rezervari = handle_undo(lst_rezervari, lst_undo, lst_redo)
+                elif subcomenzi[0] == "r":
+                    lst_rezervari = handle_redo(lst_rezervari, lst_undo, lst_redo)
+                elif subcomenzi[0] == "x":
                     return lst_rezervari
                 elif subcomenzi[0] == "help":
                     help_cmd()

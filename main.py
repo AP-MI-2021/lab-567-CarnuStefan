@@ -9,15 +9,17 @@ from UserInterface.interfata import run_ui
 
 def main():
     lst_rezervari = []
+    lst_undo = []
+    lst_redo = []
     while True:
         print('1. Interfata clasica')
         print('2. Command_line interface')
         print('x. Inchidere')
         opt = input("Alegeti optiunea: ")
         if opt == '1':
-            lst_rezervari = run_ui(lst_rezervari)
+            lst_rezervari = run_ui(lst_rezervari,lst_undo,lst_redo)
         elif opt == '2':
-            lst_rezervari = cmd_line(lst_rezervari)
+            lst_rezervari = cmd_line(lst_rezervari,lst_undo,lst_redo)
         elif opt == 'x':
             break
         else:
