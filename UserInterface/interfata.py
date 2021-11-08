@@ -1,4 +1,4 @@
-from Domain.rezevare import creaza_rezervare, get_detalii, get_nume, get_clasa, get_pret, get_checkin
+from Domain.rezevare import creeaza_rezervare, get_detalii, get_nume, get_clasa, get_pret, get_checkin
 from Logic.crud import adaug_rezervare, modifica_rezervare, sterge_rezervare, citeste_rezervare
 from Logic.ieftinire import ieftinire
 from Logic.ord_pret import ord_price
@@ -53,7 +53,7 @@ def handle_modificare(lst_rezervari, lst_undo, lst_redo):
         while (checkin != "da") & (checkin != "nu"):
             print('Checkin status invalid\nCheckin status poate fi doar : "da" sau "nu"\n')
             checkin = input("Dati un status de checkin pentru rezervare: ")
-        new_rezervare = creaza_rezervare(id_rezervare, nume, clasa, pret, checkin)
+        new_rezervare = creeaza_rezervare(id_rezervare, nume, clasa, pret, checkin)
         return modifica_rezervare(lst_rezervari, new_rezervare, lst_undo, lst_redo)
     except ValueError as err:
         print("Eroare: ", err)

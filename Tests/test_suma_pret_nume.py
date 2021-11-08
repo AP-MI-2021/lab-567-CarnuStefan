@@ -1,24 +1,24 @@
-from Domain.rezevare import creaza_rezervare
+from Domain.rezevare import creeaza_rezervare
 from Logic.suma_pret_nume import sum_price_name
 
 
 def get_date():
     return [
-        creaza_rezervare(1, "ex1", "economy", 123.4, "da"),
-        creaza_rezervare(1, "ex1", "economy", 123.4, "da"),
-        creaza_rezervare(2, "ex2", "economy plus", 225, "da"),
-        creaza_rezervare(2, "ex2", "economy plus", 225, "da"),
-        creaza_rezervare(2, "ex2", "economy plus", 225, "da"),
-        creaza_rezervare(3, "ex3", "economy", 0, "da"),
-        creaza_rezervare(3, "ex3", "economy", 0, "da"),
-        creaza_rezervare(3, "ex3", "economy", 0, "da"),
-        creaza_rezervare(4, "ex4", "business", 324.9, "nu"),
-        creaza_rezervare(4, "ex4", "business", 32453656.9, "nu"),
-        creaza_rezervare(4, "ex4", "business", 32412413.9, "nu"),
-        creaza_rezervare(5, "ex5", "economy", 123.4, "nu"),
-        creaza_rezervare(5, "ex5", "economy", -123.4, "nu"),
-        creaza_rezervare(6, "ex6", "economy", 123.4, "da"),
-        creaza_rezervare(7, "ex7", "economy plus", 225, "nu")
+        creeaza_rezervare(1, "ex1", "economy", 123.4, "da"),
+        creeaza_rezervare(1, "ex1", "economy", 123.4, "da"),
+        creeaza_rezervare(2, "ex2", "economy plus", 225, "da"),
+        creeaza_rezervare(2, "ex2", "economy plus", 225, "da"),
+        creeaza_rezervare(2, "ex2", "economy plus", 225, "da"),
+        creeaza_rezervare(3, "ex3", "economy", 0, "da"),
+        creeaza_rezervare(3, "ex3", "economy", 0, "da"),
+        creeaza_rezervare(3, "ex3", "economy", 0, "da"),
+        creeaza_rezervare(4, "ex4", "business", 324.9, "nu"),
+        creeaza_rezervare(4, "ex4", "business", 32453656.9, "nu"),
+        creeaza_rezervare(4, "ex4", "business", 32412413.9, "nu"),
+        creeaza_rezervare(5, "ex5", "economy", 123.4, "nu"),
+        creeaza_rezervare(5, "ex5", "economy", -123.4, "nu"),
+        creeaza_rezervare(6, "ex6", "economy", 123.4, "da"),
+        creeaza_rezervare(7, "ex7", "economy plus", 225, "nu")
     ]
 
 

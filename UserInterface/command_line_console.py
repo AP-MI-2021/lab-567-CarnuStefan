@@ -1,4 +1,4 @@
-from Domain.rezevare import creaza_rezervare
+from Domain.rezevare import creeaza_rezervare
 from Logic.crud import adaug_rezervare, modifica_rezervare, sterge_rezervare
 from Logic.ieftinire import ieftinire
 from Logic.ord_pret import ord_price
@@ -45,9 +45,9 @@ def cmd_line(lst_rezervari, lst_undo, lst_redo):
                         print('Comanda "add" necesita 5 parametri')
                 elif subcomenzi[0] == "modify":
                     if len(subcomenzi) == 6:
-                        new_rezervare = creaza_rezervare(int(subcomenzi[1]), subcomenzi[2], subcomenzi[3],
-                                                         float(subcomenzi[4]),
-                                                         subcomenzi[5])
+                        new_rezervare = creeaza_rezervare(int(subcomenzi[1]), subcomenzi[2], subcomenzi[3],
+                                                          float(subcomenzi[4]),
+                                                          subcomenzi[5])
                         lst_rezervari = modifica_rezervare(lst_rezervari, new_rezervare, lst_undo, lst_redo)
                     else:
                         print('Comanda "modify" necesita 5 parametri')

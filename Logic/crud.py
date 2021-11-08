@@ -1,4 +1,4 @@
-from Domain.rezevare import creaza_rezervare, get_id, get_clasa, get_checkin, get_pret
+from Domain.rezevare import creeaza_rezervare, get_id, get_clasa, get_checkin, get_pret
 
 
 def adaug_rezervare(lst_rezervari,
@@ -27,7 +27,7 @@ def adaug_rezervare(lst_rezervari,
     if (lst_undo is not None) & (lst_redo is not None):
         lst_undo.append(lst_rezervari)
         lst_redo.clear()
-    rezervare = creaza_rezervare(id_rezervare, nume, clasa, pret, checkin_facut)
+    rezervare = creeaza_rezervare(id_rezervare, nume, clasa, pret, checkin_facut)
     return lst_rezervari + [rezervare]
 
 

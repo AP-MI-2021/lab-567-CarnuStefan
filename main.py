@@ -1,7 +1,9 @@
 from Tests.test_crud import test_crud
 from Tests.test_ieftinire import test_ieftinire
+from Tests.test_ordonare import test_ord_pret
 from Tests.test_pret_maxim import test_maxprice_class
 from Tests.test_suma_pret_nume import test_sum_price_name
+from Tests.test_undo_redo import test_do_undo_redo
 from Tests.test_upgrade_clasa import test_upgrade_clasa
 from UserInterface.command_line_console import cmd_line
 from UserInterface.interfata import run_ui
@@ -27,6 +29,8 @@ def main():
 
 
 if __name__ == '__main__':
+    test_do_undo_redo()
+    test_ord_pret()
     test_sum_price_name()
     test_maxprice_class()
     test_ieftinire()

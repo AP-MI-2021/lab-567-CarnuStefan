@@ -1,4 +1,4 @@
-from Domain.rezevare import get_checkin, get_pret, creaza_rezervare, get_id, get_nume, get_clasa
+from Domain.rezevare import get_checkin, get_pret, creeaza_rezervare, get_id, get_nume, get_clasa
 
 
 def ieftinire(lst_rezervari, procentaj: float = None, lst_undo: list = None, lst_redo: list = None):
@@ -19,8 +19,8 @@ def ieftinire(lst_rezervari, procentaj: float = None, lst_undo: list = None, lst
     for rezervare in lst_rezervari:
         descazut = (procentaj / 100) * get_pret(rezervare)
         if get_checkin(rezervare) == "da":
-            rezervare_ieftinita = creaza_rezervare(get_id(rezervare), get_nume(rezervare), get_clasa(rezervare),
-                                                   get_pret(rezervare) - descazut, get_checkin(rezervare))
+            rezervare_ieftinita = creeaza_rezervare(get_id(rezervare), get_nume(rezervare), get_clasa(rezervare),
+                                                    get_pret(rezervare) - descazut, get_checkin(rezervare))
             result.append(rezervare_ieftinita)
         else:
             result.append(rezervare)
