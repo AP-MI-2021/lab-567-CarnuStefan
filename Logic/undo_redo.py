@@ -10,7 +10,7 @@ def do_undo(lst_rezervari: list, lst_undo: list, lst_redo: list, ):
         lst_redo.append(lst_rezervari)
         return lst_undo.pop()
 
-    return None
+    return lst_rezervari
 
 
 def do_redo(lst_rezervari: list, lst_undo: list, lst_redo: list, ):
@@ -25,4 +25,4 @@ def do_redo(lst_rezervari: list, lst_undo: list, lst_redo: list, ):
         lst_undo.append(lst_rezervari)
         return lst_redo.pop()
 
-    return None
+    return lst_rezervari

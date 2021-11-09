@@ -71,3 +71,99 @@ def test_do_undo_redo():
     assert get_pret(lst_test[0]) != 0
     lst_test = do_redo(lst_test, lst_undo_test, lst_redo_test)
     assert get_pret(lst_test[0]) == 0
+    # Teste dupa exemplul din laborator
+    lista_de_rezervari = []
+    lista_undo = []
+    lista_redo = []
+    o1 = creeaza_rezervare(1, "o1", "economy", 102, "da")
+    o2 = creeaza_rezervare(2, "o2", "economy plus", 212, "da")
+    o3 = creeaza_rezervare(3, "o3", "business", 98, "nu")
+    lista_de_rezervari = adaug_rezervare(lista_de_rezervari, 1, "o1", "economy", 102, "da", lista_undo, lista_redo)
+    lista_de_rezervari = adaug_rezervare(lista_de_rezervari, 2, "o2", "economy plus", 212, "da", lista_undo, lista_redo)
+    lista_de_rezervari = adaug_rezervare(lista_de_rezervari, 3, "o3", "business", 98, "nu", lista_undo, lista_redo)
+    lista_de_rezervari = do_undo(lista_de_rezervari, lista_undo, lista_redo)
+    assert o1 in lista_de_rezervari
+    assert o2 in lista_de_rezervari
+    assert o3 not in lista_de_rezervari
+    lista_de_rezervari = do_undo(lista_de_rezervari, lista_undo, lista_redo)
+    assert o1 in lista_de_rezervari
+    assert o2 not in lista_de_rezervari
+    assert o3 not in lista_de_rezervari
+    lista_de_rezervari = do_undo(lista_de_rezervari, lista_undo, lista_redo)
+    assert o1 not in lista_de_rezervari
+    assert o2 not in lista_de_rezervari
+    assert o3 not in lista_de_rezervari
+    lista_de_rezervari = do_undo(lista_de_rezervari, lista_undo, lista_redo)
+    assert o1 not in lista_de_rezervari
+    assert o2 not in lista_de_rezervari
+    assert o3 not in lista_de_rezervari
+    lista_de_rezervari = adaug_rezervare(lista_de_rezervari, 1, "o1", "economy", 102, "da", lista_undo, lista_redo)
+    lista_de_rezervari = adaug_rezervare(lista_de_rezervari, 2, "o2", "economy plus", 212, "da", lista_undo, lista_redo)
+    lista_de_rezervari = adaug_rezervare(lista_de_rezervari, 3, "o3", "business", 98, "nu", lista_undo, lista_redo)
+    assert o1 in lista_de_rezervari
+    assert o2 in lista_de_rezervari
+    assert o3 in lista_de_rezervari
+    lista_de_rezervari = do_redo(lista_de_rezervari, lista_undo, lista_redo)
+    assert o1 in lista_de_rezervari
+    assert o2 in lista_de_rezervari
+    assert o3 in lista_de_rezervari
+    lista_de_rezervari = do_undo(lista_de_rezervari, lista_undo, lista_redo)
+    assert o1 in lista_de_rezervari
+    assert o2 in lista_de_rezervari
+    assert o3 not in lista_de_rezervari
+    lista_de_rezervari = do_undo(lista_de_rezervari, lista_undo, lista_redo)
+    assert o1 in lista_de_rezervari
+    assert o2 not in lista_de_rezervari
+    assert o3 not in lista_de_rezervari
+    lista_de_rezervari = do_redo(lista_de_rezervari, lista_undo, lista_redo)
+    assert o1 in lista_de_rezervari
+    assert o2 in lista_de_rezervari
+    assert o3 not in lista_de_rezervari
+    lista_de_rezervari = do_redo(lista_de_rezervari, lista_undo, lista_redo)
+    assert o1 in lista_de_rezervari
+    assert o2 in lista_de_rezervari
+    assert o3 in lista_de_rezervari
+    lista_de_rezervari = do_undo(lista_de_rezervari, lista_undo, lista_redo)
+    assert o1 in lista_de_rezervari
+    assert o2 in lista_de_rezervari
+    assert o3 not in lista_de_rezervari
+    lista_de_rezervari = do_undo(lista_de_rezervari, lista_undo, lista_redo)
+    assert o1 in lista_de_rezervari
+    assert o2 not in lista_de_rezervari
+    assert o3 not in lista_de_rezervari
+    o4 = creeaza_rezervare(4, "o4", "business", 9.8, "da")
+    lista_de_rezervari = adaug_rezervare(lista_de_rezervari, 4, "o4", "business", 9.8, "da", lista_undo, lista_redo)
+    assert o1 in lista_de_rezervari
+    assert o2 not in lista_de_rezervari
+    assert o3 not in lista_de_rezervari
+    assert o4 in lista_de_rezervari
+    lista_de_rezervari = do_redo(lista_de_rezervari, lista_undo, lista_redo)
+    assert o1 in lista_de_rezervari
+    assert o2 not in lista_de_rezervari
+    assert o3 not in lista_de_rezervari
+    assert o4 in lista_de_rezervari
+    lista_de_rezervari = do_undo(lista_de_rezervari, lista_undo, lista_redo)
+    assert o1 in lista_de_rezervari
+    assert o2 not in lista_de_rezervari
+    assert o3 not in lista_de_rezervari
+    assert o4 not in lista_de_rezervari
+    lista_de_rezervari = do_undo(lista_de_rezervari, lista_undo, lista_redo)
+    assert o1 not in lista_de_rezervari
+    assert o2 not in lista_de_rezervari
+    assert o3 not in lista_de_rezervari
+    assert o4 not in lista_de_rezervari
+    lista_de_rezervari = do_redo(lista_de_rezervari, lista_undo, lista_redo)
+    assert o1 in lista_de_rezervari
+    assert o2 not in lista_de_rezervari
+    assert o3 not in lista_de_rezervari
+    assert o4 not in lista_de_rezervari
+    lista_de_rezervari = do_redo(lista_de_rezervari, lista_undo, lista_redo)
+    assert o1 in lista_de_rezervari
+    assert o2 not in lista_de_rezervari
+    assert o3 not in lista_de_rezervari
+    assert o4 in lista_de_rezervari
+    lista_de_rezervari = do_redo(lista_de_rezervari, lista_undo, lista_redo)
+    assert o1 in lista_de_rezervari
+    assert o2 not in lista_de_rezervari
+    assert o3 not in lista_de_rezervari
+    assert o4 in lista_de_rezervari

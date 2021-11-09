@@ -14,7 +14,6 @@ def get_date():
     ]
 
 
-
 def test_ord_pret():
     lst_test = get_date()
     lst_ordonata = ord_price(lst_test)
